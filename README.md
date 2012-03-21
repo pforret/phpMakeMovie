@@ -7,4 +7,4 @@ STEPS
 * downmix 5.1 audio to 2 channels (stereo)
 * convert image J2C to TIF (with XYZ-RGB / gamma)
 * convert TIF to JPG (with rescale)
-* generate MOV with JPG sequa,nce and stereo sound
+* generate MOV with JPG sequence and stereo sound
