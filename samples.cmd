@@ -26,5 +26,14 @@ asdcp-test -x img/f01_ -f %SKIP% -d %NBFRAMES% %MXF_VIDEO%
 ::         lame --replaygain-accurate --clipdetect --disptime 120 %STEREO_WAV% %STEREO_MP3% > %LAME_OUTPUT%
 :: * TOOL: sox [sox.sourceforge.net](http://sox.sourceforge.net/)
 sox %WAV_51% %WAV_STEREO%  remix 1,3,5 2,3,6
+::         or with the Low Freq channel added
+sox %WAV_51% %WAV_STEREO%  remix 1,3,4,5 2,3,4,6 
 
-:: ==== CONVERTS JPEG2000 TO TIF
+:: ==== CONVERTS JPEG2000 TO TIF (or JPG)
+:: * TASK: decompress J2K format
+:: * TASK: convert from XYZ colorspace to RGB (taking into account gamma)
+:: * TOOL: ImageMagick http://www.imagemagick.org/script/index.php
+:: * in some cases, you might need j2k_to_image.exe to convert to TIF first and then ImageMagick afterwards for the gamma/RGB
+%MAGICK% %IMG_S2K% -gamma 0.454545 -set colorspace XYZ -colorspace RGB -gamma 2.2 -depth 12 %IMG_TIF%
+%MAGICK% %IMG_S2K% -gamma 0.454545 -set colorspace XYZ -colorspace RGB -gamma 2.2 -quality 100%% %IMG_JPG%
+
